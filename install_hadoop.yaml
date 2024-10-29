@@ -1,0 +1,57 @@
+- hosts: all
+  gather_facts: false
+  become: true
+  become_user: root
+  vars:
+    files: ["workers", "core-site.xml", "hdfs-site.xml"]
+
+  tasks:
+    - name: Ensure /home/hadoop directory exists
+      file:
+        path: /home/hadoop
+        state: directory
+        owner: hadoop
+        group: hadoop
+        mode: '0755'
+
+    - name: Create user hadoop accounts
+      user:
+        name: "hadoop"
+        create_home: true
+        shell: /usr/bin/bash
+
+    - name: Add authorized keys to hadoop user
+      authorized_key:
+        user: "hadoop"
+        key: "{{ lookup('file', '.ssh/id_ed25519.pub') }}"
+
+    - name: Delete a directory /opt/hadoop
+      ansible.builtin.file:
+        path: /opt/hadoop
+        state: absent
+
+    - name: Create a directory /opt/hadoop
+      ansible.builtin.file:
+        path: /opt/hadoop
+        state: directory
+        owner: hadoop
+        group: hadoop
+        mode: '0755'
+
+    - name: Upload Hadoop archive to home directory
+      copy:
+        src: "hadoop-3.4.0.tar.gz"
+        dest: "/home/hadoop/hadoop.tar.gz"
+      become: true  # Run as root
+
+    - name: Unarchive Hadoop
+      ansible.builtin.unarchive:
+        src: "/home/hadoop/hadoop.tar.gz"
+        dest: /opt/hadoop/
+        remote_src: yes
+
+    - name: Overwrite settings files
+      copy:
+        src: "{{ item }}"
+        dest: "/opt/hadoop/hadoop-3.4.0/etc/hadoop/"
+      with_items: "{{ files }}"

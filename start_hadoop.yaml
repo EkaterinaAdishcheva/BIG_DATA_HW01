@@ -1,0 +1,52 @@
+- hosts: name_node 
+  gather_facts: false
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Create a log directory
+    ansible.builtin.file:
+      path: /opt/hadoop/hadoop-3.4.0/logs/
+      state: directory
+      mode: '0755'
+  - name: Delete hadoop-root
+    ansible.builtin.file:
+      path: /tmp/hadoop-root/dfs/name
+      state: absent
+  - name: Format hdfs
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+    ansible.builtin.shell:
+      cmd: /opt/hadoop/hadoop-3.4.0/bin/hdfs namenode -format
+  - name: Delete namenode pid file after formatting hdfs
+    file:
+      path: /tmp/hadoop-root-namenode.pid
+      state: absent
+  - name: Start namenode
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+    ansible.builtin.shell:
+      creates: /tmp/hadoop-root-namenode.pid
+      cmd: /opt/hadoop/hadoop-3.4.0/bin/hdfs --daemon start namenode
+
+- hosts: all 
+  gather_facts: false
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Create a log directory
+    ansible.builtin.file:
+      path: /opt/hadoop/hadoop-3.4.0/logs/
+      state: directory
+      mode: '0755'
+  - name: Delete hadoop-root
+    ansible.builtin.file:
+      path: /tmp/hadoop-root/dfs/data
+      state: absent
+  - name: Start datanode
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+    ansible.builtin.shell:
+      creates: /tmp/hadoop-root-datanode.pid
+      cmd: /opt/hadoop/hadoop-3.4.0/bin/hdfs --daemon start datanode

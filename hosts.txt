@@ -1,0 +1,7 @@
+[name_node]
+team-35-nn ansible_become_password="2Q4W/WE:p7UR" ansible_ssh_pass="2Q4W/WE:p7UR"
+
+[data_node]
+team-35-dn-0 ansible_become_password="2Q4W/WE:p7UR" ansible_ssh_pass="2Q4W/WE:p7UR"
+team-35-dn-1 ansible_become_password="2Q4W/WE:p7UR" ansible_ssh_pass="2Q4W/WE:p7UR"
+

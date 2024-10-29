@@ -1,0 +1,17 @@
+- hosts: all
+  gather_facts: false
+  become: true
+  become_user: root
+  vars:
+    users: ["hadoop", "hadoop_new", "hadoop-new"]
+
+  tasks:
+  - name: "Kill processes by hadoop"
+    shell:
+      cmd: "kill -9 `ps -o pid --no-headers -u hadoop` || :"
+  - name: "Delete unused accounts"
+    user:
+      name: "{{ item }}"
+      remove: true
+      state: absent
+    with_items: "{{ users }}"

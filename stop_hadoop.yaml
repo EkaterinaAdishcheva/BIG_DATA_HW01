@@ -1,0 +1,31 @@
+- hosts: all
+  gather_facts: false
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Execute hdfs --daemon stop datanode
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+    ansible.builtin.shell:
+      cmd: /opt/hadoop/hadoop-3.4.0/bin/hdfs --daemon stop datanode
+  - name: Delete datanode pid file
+    file:
+      path: /tmp/hadoop-root-datanode.pid
+      state: absent
+
+- hosts: name_node 
+  gather_facts: false
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Execute hdfs --daemon stop namenode
+    environment:
+      JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+    ansible.builtin.shell:
+      cmd: /opt/hadoop/hadoop-3.4.0/bin/hdfs --daemon stop namenode
+  - name: Delete namenode pid file
+    file:
+      path: /tmp/hadoop-root-namenode.pid
+      state: absent
