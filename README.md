@@ -9,32 +9,35 @@ Team-35-dn-01
 
 ### Установка
 
-1. Добавляем имена hosts в /etc/hosts под пользователем team (sudo):
+1. Добавляем имена hosts в /etc/hosts под пользователем team (sudo) на всех серверах:
 ```
 192.168.1.142 team-35-jn
 192.168.1.143 team-35-nn
 192.168.1.144 team-35-dn-0
 192.168.1.145 team-35-dn-1
 ```
-2. Устанавливаем ```ssh-keygen``` в ```.ssh/id_ed25519```
 
-3. Загружаем архив
+2. Заходим на ```team-35-jn``` под пользователем ```team```.
+
+3. Устанавливаем ```ssh-keygen``` в ```.ssh/id_ed25519```
+
+4. Загружаем архив
 ```
 wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz" 
 ```
-4. Устанавливаем ```ansible```
+5. Устанавливаем ```ansible```
 ```
 sudo apt-get install ansible
 ```
-5. Загружаем репозиторий
+6. Загружаем репозиторий
 ```
 git clone git@github.com:EkaterinaAdishcheva/BIG_DATA_HW01.git
 ```            
-6. Запускаем скрипт для установки и запуска ```hadoop```
+7. Запускаем скрипт для установки и запуска ```hadoop```
 ```
 ansible-playbook del_users.yaml install_hadoop.yaml start_hadoop.yaml
 ```
-7. Останавливаем ```hadoop```
+8. Останавливаем ```hadoop```
 ```
 ansible-playbook stop_hadoop.yaml
 ```
