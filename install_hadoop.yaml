@@ -10,8 +10,6 @@
       file:
         path: /home/hadoop
         state: directory
-        owner: hadoop
-        group: hadoop
         mode: '0755'
 
     - name: Create user hadoop accounts
@@ -34,8 +32,6 @@
       ansible.builtin.file:
         path: /opt/hadoop
         state: directory
-        owner: hadoop
-        group: hadoop
         mode: '0755'
 
     - name: Upload Hadoop archive to home directory
