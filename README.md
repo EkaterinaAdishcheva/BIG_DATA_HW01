@@ -55,5 +55,6 @@ sudo systemctl reload nginx
 Интерфейс ```hadoop```: http://176.109.91.34:9870/
 
 
+### 
 Файлы ```ansible.cfg``` и ```hosts.txt``` нужны для конфигурации ```ansible```. Файлы ```workers```, ```core-site.xml```, ```hdfs-site.xml``` нужны для конфигурации hadoop.
 
