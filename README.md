@@ -44,6 +44,8 @@ ansible-playbook stop_hadoop.yaml
 * ```install_hadoop.yaml``` - основной скрипт 
 * ```start_hadoop.yaml``` - запуск демонов 
 * ```stop_hadoop.yaml``` - остановка демонов
+* ```ansible.cfg``` и ```hosts.txt``` конфигурация ```ansible```
+* ```workers```, ```core-site.xml```, ```hdfs-site.xml``` - конфигурации ```hadoop```.
 
 
 ### Настройка Nginx
@@ -53,8 +55,4 @@ sudo ln -s /etc/nginx/sites-available/nn /etc/nginx/sites-enabled/nn
 sudo systemctl reload nginx
 ```
 Интерфейс ```hadoop```: http://176.109.91.34:9870/
-
-
-### 
-Файлы ```ansible.cfg``` и ```hosts.txt``` нужны для конфигурации ```ansible```. Файлы ```workers```, ```core-site.xml```, ```hdfs-site.xml``` нужны для конфигурации hadoop.
 
