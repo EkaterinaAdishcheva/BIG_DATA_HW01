@@ -26,20 +26,15 @@ wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz"
 ```
 sudo apt-get install ansible
 ```
-
-5. Настраиваем ```ansible```: редактируем ```ansible.cfg```, ```hosts.txt```
-
-6. Создаем файлы, которые нужно скопировать в директорию ```/opt/hadoop/hadoop-3.4.0/etc/hadoop/```:
+5. Загружаем репозиторий
 ```
-workers
-core-site.xml
-hdfs-site.xml
-```
-7. Запускаем скрипт для установки и запуска ```hadoop```
+git clone git@github.com:EkaterinaAdishcheva/BIG_DATA_HW01.git
+```            
+6. Запускаем скрипт для установки и запуска ```hadoop```
 ```
 ansible-playbook del_users.yaml install_hadoop.yaml start_hadoop.yaml
 ```
-8. Останавливаем ```hadoop```
+7. Останавливаем ```hadoop```
 ```
 ansible-playbook stop_hadoop.yaml
 ```
@@ -58,3 +53,7 @@ sudo ln -s /etc/nginx/sites-available/nn /etc/nginx/sites-enabled/nn
 sudo systemctl reload nginx
 ```
 Интерфейс ```hadoop```: http://176.109.91.34:9870/
+
+
+Файлы ```ansible.cfg``` и ```hosts.txt``` нужны для конфигурации ```ansible```. Файлы ```workers```, ```core-site.xml```, ```hdfs-site.xml``` нужны для конфигурации hadoop.
+
