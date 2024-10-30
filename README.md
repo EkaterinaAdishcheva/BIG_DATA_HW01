@@ -50,4 +50,8 @@ ansible-playbook stop_hadoop.yaml
 * ```start_hadoop.yaml``` - запуск демонов 
 * ```stop_hadoop.yaml``` - остановка демонов
 
+
+### Настройка Nginx
+
+sudo ln -s /etc/nginx/sites-available/nn /etc/nginx/sites-enabled/nn
 Интерфейс ```hadoop```: http://176.109.91.34:9870/
