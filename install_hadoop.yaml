@@ -6,11 +6,15 @@
     files: ["workers", "core-site.xml", "hdfs-site.xml"]
 
   tasks:
-    - name: Ensure /home/hadoop directory exists
-      file:
+    - name: Overwrite settings files
+      copy:
+        src: "/etc/hosts"
+        dest: "/etc/hosts"
+
+    - name: Delete a directory /home/hadoop
+      ansible.builtin.file:
         path: /home/hadoop
-        state: directory
-        mode: '0755'
+        state: absent
 
     - name: Create user hadoop accounts
       user:
@@ -34,15 +38,21 @@
         state: directory
         mode: '0755'
 
+    # - name: Download hadoop-3.4.0.tar.gz
+    #   ansible.builtin.get_url:
+    #     url: "https://dlcdn.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz"
+    #     dest: "/home/hadoop/"
+    #   become: true  # Run as root
+
     - name: Upload Hadoop archive to home directory
       copy:
         src: "hadoop-3.4.0.tar.gz"
-        dest: "/home/hadoop/hadoop.tar.gz"
+        dest: "/home/hadoop/hadoop-3.4.0.tar.gz"
       become: true  # Run as root
 
     - name: Unarchive Hadoop
       ansible.builtin.unarchive:
-        src: "/home/hadoop/hadoop.tar.gz"
+        src: "/home/hadoop/hadoop-3.4.0.tar.gz"
         dest: /opt/hadoop/
         remote_src: yes
 
