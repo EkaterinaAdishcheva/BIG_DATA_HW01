@@ -62,10 +62,12 @@ ansible-playbook stop_hadoop.yaml
 
 ### Настройка Nginx
 ```
-sudo cp nn /etc/nginx/sites-available
 sudo rm /etc/nginx/sites-enabled/nn
 sudo rm /etc/nginx/sites-enabled/ya
 sudo rm /etc/nginx/sites-enabled/dh
+```
+```
+sudo cp nn /etc/nginx/sites-available
 sudo ln -s /etc/nginx/sites-available/nn /etc/nginx/sites-enabled/nn
 sudo systemctl reload nginx
 ```
