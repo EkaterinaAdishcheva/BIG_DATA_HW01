@@ -35,7 +35,7 @@ wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz"
 ```
 sudo apt-get install ansible
 ```
-6. Загружаем репозиторий
+6. Загружаем репозиторий (предварительно добавляем открытый ключ в репозиторий)
 ```
 git clone git@github.com:EkaterinaAdishcheva/BIG_DATA_HW01.git
 ```            
