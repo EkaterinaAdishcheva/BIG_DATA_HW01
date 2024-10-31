@@ -43,7 +43,8 @@ mv BIG_DATA_HW01/* .
 ```            
 7. Запускаем скрипт для установки и запуска ```hadoop```
 ```
-ansible-playbook del_users.yaml install_hadoop.yaml start_hadoop.yaml
+ansible-playbook install_hadoop.yaml -vvv
+ansible-playbook start_hadoop.yaml
 ```
 8. Останавливаем ```hadoop```
 ```
