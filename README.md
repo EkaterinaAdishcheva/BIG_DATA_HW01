@@ -31,9 +31,10 @@ ssh-keygen
 ```
 wget "https://dlcdn.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz" 
 ```
-5. Устанавливаем ```ansible```
+5. Устанавливаем ```ansible``` и ```sshpass:```
 ```
 sudo apt-get install ansible
+sudo apt install sshpass
 ```
 6. Загружаем репозиторий (предварительно добавляем открытый ключ в репозиторий)
 ```
