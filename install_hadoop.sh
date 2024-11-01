@@ -16,7 +16,7 @@ ansible-playbook start_hadoop.yaml
 
 cp workers core-site.xml hdfs-site.xml hadoop-3.4.0/etc/hadoop/
 
-cp .profile_new .profile
+cp profile_new .profile
 source .profile
 
 sudo rm /etc/nginx/sites-enabled/nn
