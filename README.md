@@ -35,5 +35,5 @@ bash install_hadoop.sh
 * [nn](nn) - файл для конфигурации ```nginx```
 * [install_hadoop.sh](install_hadoop.sh) - основной скрипт
 
-Интерфейс ```hadoop```: http://176.109.91.34:9870/
 
+Интерфейс ```hadoop```: http://176.109.91.34:9870/
